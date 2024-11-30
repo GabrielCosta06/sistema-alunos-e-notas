@@ -2,123 +2,160 @@
 
 **FATEC Arthur de Azevedo - Análise e Desenvolvimento de Sistemas - NOTURNO - 2° Semestre**
 
-### Nomes:
+---
+
+### Equipe:
 - **José Gabriel Barbeta**
 - **Rogério de Lima**
 - **Kaique Carvalho**
 - **Eduardo Toledo**
 
-Este projeto é um **sistema de gerenciamento de alunos e notas** desenvolvido em C, que possibilita o cadastro, autenticação, listagem, e edição de usuários, além da gestão de notas. O sistema divide os usuários em três categorias: **Administrador**, **Professor** e **Aluno**, cada um com permissões específicas.
+Este projeto consiste em um **sistema de gerenciamento de alunos e notas** desenvolvido na linguagem C, com foco em manipulação de arquivos e estruturas de dados. Ele possibilita o cadastro, autenticação, listagem e edição de usuários, bem como o gerenciamento de notas. O sistema organiza os usuários em três categorias principais: **Administrador**, **Professor** e **Aluno**, cada qual com permissões específicas.
 
-## Funcionalidades
+---
 
-1. **Cadastro de Usuário**
-   - Permite cadastrar diferentes tipos de usuários: Administrador, Professor e Aluno.
-   - Alunos recebem um **RA** (Registro Acadêmico) gerado automaticamente.
-   - Dados solicitados incluem nome, e-mail e senha.
+## Funcionalidades do Sistema
 
-2. **Autenticação de Usuário**
-   - Login de usuários através de e-mail e senha.
-   - Exibição de menus personalizados dependendo do tipo de usuário.
+### 1. Cadastro de Usuário
+- Inclusão de novos usuários com os seguintes tipos:
+  - **Administrador**: gerencia usuários e notas.
+  - **Professor**: gerencia notas de alunos.
+  - **Aluno**: consulta suas próprias notas.
+- Geração automática de um **RA (Registro Acadêmico)** para alunos.
+- Informações requeridas:
+  - Nome
+  - E-mail
+  - Senha
+  - Tipo de usuário
 
-3. **Menu de Usuário**
-   - **Administrador**:
-     - Cadastro de novos usuários.
-     - Listagem de todos os alunos.
-     - Cadastro e modificação de notas.
-     - Edição de dados dos usuários.
-   - **Professor**:
-     - Listagem de todos os alunos.
-     - Cadastro de notas.
-   - **Aluno**:
-     - Visualização de suas notas e média.
+### 2. Autenticação de Usuário
+- Login seguro com e-mail e senha.
+- Controle de acesso baseado no tipo de usuário.
+- Apresentação de menus personalizados conforme permissões.
 
-4. **Gerenciamento de Dados**
-   - Dados dos usuários armazenados no arquivo `usuarios.txt`.
-   - Carregamento automático dos dados ao iniciar o sistema, com salvamento ao sair.
+### 3. Menu Personalizado
+#### **Administrador**
+- Cadastrar novos usuários.
+- Listar e consultar informações de alunos.
+- Editar dados de usuários.
+- Gerenciar notas (inclusão, edição e exclusão).
 
-## Como Utilizar
+#### **Professor**
+- Listar alunos vinculados.
+- Cadastrar e editar notas dos alunos.
 
-### Compilar o Programa
+#### **Aluno**
+- Consultar notas e médias de suas disciplinas.
 
-Certifique-se de possuir um compilador C (como GCC). Utilize o comando abaixo para compilar o programa:
+### 4. Gerenciamento de Dados
+- **Persistência**: os dados dos usuários são armazenados em um arquivo de texto (`usuarios.txt`), permitindo a reutilização após o fechamento do programa.
+- Operações de leitura e escrita para:
+  - Carregar os dados no início do programa.
+  - Salvar automaticamente ao sair.
+
+---
+
+## Estrutura do Projeto
+
+- **`main.c`**: arquivo principal contendo o fluxo do programa e a lógica de menus.
+- **`usuarios.c`**: implementação de funções para gerenciamento de usuários.
+- **`usuarios.h`**: cabeçalho com definições de estruturas e protótipos.
+- **`usuarios.txt`**: arquivo de texto para armazenamento dos dados.
+
+---
+
+## Requisitos do Sistema
+
+- **Ambiente de desenvolvimento**:
+  - Compilador C (como GCC).
+  - Sistema operacional compatível com execução de programas em C (Windows, Linux ou macOS).
+- **Recursos mínimos**:
+  - Acesso a terminal ou prompt de comando.
+  - Editor de texto para possíveis edições no código-fonte.
+
+---
+
+## Instruções de Uso
+
+### 1. Compilação do Programa
+Certifique-se de ter um compilador C instalado. Para compilar o programa, execute o seguinte comando no terminal:
 
 ```bash
-gcc -o sistema sistema.c usuarios.c -lm
+gcc -o sistema main.c usuarios.c -lm
 ```
 
-### Executar o Programa
-
-Após a compilação, execute o programa com o comando:
+### 2. Execução do Programa
+Após a compilação, inicie o sistema com o comando:
 
 ```bash
 ./sistema
 ```
 
-### Navegação no Menu
+### 3. Navegação
+- O programa inicia com opções de cadastro e login.
+- Após o login, menus específicos são exibidos de acordo com o tipo de usuário.
+- Selecione opções digitando o número correspondente e pressionando **Enter**.
 
-- Ao iniciar, o sistema apresenta um menu para cadastro ou autenticação.
-- Usuários autenticados têm acesso a menus específicos conforme o tipo.
-- Use os números correspondentes para selecionar opções e pressione **Enter**.
+---
 
-## Estrutura do Projeto
+## Exemplo de Execução
 
-- **usuarios.h**: Definições de estruturas e constantes.
-- **main.c**: Código principal com fluxo do sistema e menus.
-- **usuarios.txt**: Banco de dados simples em texto para armazenamento de usuários.
-
-## Requisitos
-
-- **Compilador C** (GCC ou equivalente).
-- Sistema operacional compatível com compilação e execução de programas em C.
-
-## Exemplo de Uso
-
-### Cadastro de um Novo Usuário
+### Cadastro de Usuário
 ```plaintext
-Menu:
-1. Cadastrar Usuario
-2. Autenticar Usuario
+Menu Principal:
+1. Cadastrar Usuário
+2. Autenticar Usuário
 0. Sair
-Opcao: 1
+Opção: 1
 
-Digite o nome do usuario: João Silva
-Digite o e-mail do usuario: joao.silva@example.com
-Digite a senha do usuario: senha123
+Digite o nome do usuário: Ana Pereira
+Digite o e-mail do usuário: ana.pereira@example.com
+Digite a senha do usuário: senha123
 Digite o tipo de usuário (0 - Administrador, 1 - Professor, 2 - Aluno): 2
-Usuario cadastrado com sucesso!
+Usuário cadastrado com sucesso! RA: 20240001
 ```
 
-### Autenticação e Acesso
+### Autenticação e Acesso ao Menu de Aluno
 ```plaintext
-Menu:
-1. Cadastrar Usuario
-2. Autenticar Usuario
+Menu Principal:
+1. Cadastrar Usuário
+2. Autenticar Usuário
 0. Sair
-Opcao: 2
+Opção: 2
 
-Digite o e-mail: joao.silva@example.com
+Digite o e-mail: ana.pereira@example.com
 Digite a senha: senha123
-Bem-vindo, João Silva!
+Bem-vindo(a), Ana Pereira!
 
-Menu de Usuario:
-1. Exibir Notas
-5. Sair
-Opcao: 1
+Menu do Aluno:
+1. Consultar Notas
+0. Sair
+Opção: 1
 
 Notas do Aluno:
-Nenhuma nota cadastrada.
+- Matemática: 8.5
+- Português: 7.0
+Média Final: 7.75
 ```
 
-## Observações
+---
 
-- Este projeto exemplifica manipulação de dados em C com leitura e escrita de arquivos de texto.
-- Certifique-se de que o arquivo `usuarios.txt` esteja no diretório correto, ou altere o caminho no código-fonte.
+## Observações Importantes
+
+1. **Segurança dos Dados**:
+   - As senhas dos usuários são armazenadas de forma simples no arquivo de texto.
+   - Para maior segurança, recomenda-se implementar uma função de hash para criptografia de senhas.
+
+2. **Gerenciamento de Arquivos**:
+   - O arquivo `usuarios.txt` deve estar no diretório C:
+   - Caso contrário, o caminho precisa ser ajustado no código-fonte.
+
+---
 
 ## Contribuições
+Contribuições são bem-vindas! Sugestões e melhorias podem ser feitas via **issues** ou **pull requests** no repositório do projeto.
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir **issues** ou enviar **pull requests** para sugestões e melhorias.
+---
 
 ## Licença
-
-Este projeto é open-source e está licenciado sob a **Licença MIT**.
+Este projeto é open-source e está licenciado sob a **Licença MIT**. Consulte o arquivo `LICENSE` para mais informações. 
