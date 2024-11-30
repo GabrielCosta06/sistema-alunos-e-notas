@@ -64,8 +64,7 @@ Após a compilação, execute o programa com o comando:
 ## Estrutura do Projeto
 
 - **usuarios.h**: Definições de estruturas e constantes.
-- **sistema.c**: Código principal com fluxo do sistema e menus.
-- **usuarios.c**: Implementação das funções de gerenciamento de usuários.
+- **main.c**: Código principal com fluxo do sistema e menus.
 - **usuarios.txt**: Banco de dados simples em texto para armazenamento de usuários.
 
 ## Requisitos
