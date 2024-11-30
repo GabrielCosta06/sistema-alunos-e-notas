@@ -161,7 +161,7 @@ int gerarRA() {
 }
 
 void salvarDados() {
-    FILE *file = fopen("C:\\usuarios.txt", "w"); 
+    FILE *file = fopen("C:\\usuarios.txt", "w");
     if (!file) {
         perror("Erro ao abrir o arquivo para escrita!");
         return;
@@ -406,7 +406,7 @@ void editarUsuario(Usuario* usuario) {
     int encontrado = 0; //Indicação Se foi encontrado o usuário
 
      // Tenta buscar pelo RA (para alunos)
-    int ra = atoi(busca); // Tenta converter a entrada para inteiro
+    int ra = busca; // Tenta converter a entrada para inteiro
     for (int i = 0; i < num_usuarios; i++) {
         if (usuarios[i].ra == ra && usuarios[i].tipo == ALUNO) {
             encontrado = 1; // Aluno encontrado

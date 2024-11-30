@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "sistema_alunos_e_notas_3_0::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-sistema_alunos_e_notas_3_0-Debug-a3be09ca11964c107441.json",
+					"jsonFile" : "target-sistema_alunos_e_notas_3_0-Debug-287a1eb0eb44ef7481bd.json",
 					"name" : "sistema_alunos_e_notas_3_0",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Joset/Desktop/sistema-alunos-e-notas-3.0/cmake-build-debug",
-		"source" : "C:/Users/Joset/Desktop/sistema-alunos-e-notas-3.0"
+		"build" : "C:/Users/Joset/Desktop/sistema-alunos-e-notas-ultra-master-power/cmake-build-debug",
+		"source" : "C:/Users/Joset/Desktop/sistema-alunos-e-notas-ultra-master-power"
 	},
 	"version" : 
 	{
