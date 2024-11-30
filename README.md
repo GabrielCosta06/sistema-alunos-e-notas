@@ -58,7 +58,6 @@ Este projeto consiste em um **sistema de gerenciamento de alunos e notas** desen
 ## Estrutura do Projeto
 
 - **`main.c`**: arquivo principal contendo o fluxo do programa e a lógica de menus.
-- **`usuarios.c`**: implementação de funções para gerenciamento de usuários.
 - **`usuarios.h`**: cabeçalho com definições de estruturas e protótipos.
 - **`usuarios.txt`**: arquivo de texto para armazenamento dos dados.
 
