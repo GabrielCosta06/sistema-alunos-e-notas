@@ -160,6 +160,17 @@ int gerarRA() {
     return num_alunos++;
 }
 
+/**
+ * @brief Salva os dados dos usuários em um arquivo.
+ *
+ * Esta função grava os dados dos usuários em um arquivo chamado "usuarios.txt".
+ * Inclui informações como nome, email, senha, RA, tipo de usuário, notas e
+ * estado de atividade. Útil para persistir os dados após o encerramento do programa.
+ *
+ * @note O arquivo é salvo no diretório "C:\".
+ * @warning Certifique-se de ter permissões de escrita no diretório especificado.
+ */
+
 void salvarDados() {
     FILE *file = fopen("C:\\usuarios.txt", "w");
     if (!file) {
@@ -183,6 +194,17 @@ void salvarDados() {
     fclose(file);
     printf("Dados salvos com sucesso!\n");
 }
+
+/**
+ * @brief Carrega os dados dos usuários de um arquivo.
+ *
+ * Lê os dados previamente salvos no arquivo "usuarios.txt" e carrega os
+ * usuários na memória do programa. Inclui informações como nome, email, senha,
+ * RA, tipo de usuário, notas e estado de atividade.
+ *
+ * @note O arquivo deve estar localizado em "C:\".
+ * @warning Certifique-se de que o arquivo "usuarios.txt" existe e está no formato esperado.
+ */
 
 void carregarDados() {
     FILE *file = fopen("C:\\usuarios.txt", "r");
@@ -209,6 +231,22 @@ void carregarDados() {
     fclose(file);
     printf("Dados carregados com sucesso!\n");
 }
+
+/**
+ * @brief Cadastra um novo usuário no sistema.
+ *
+ * Solicita os dados do novo usuário, como nome, email, senha e tipo de usuário.
+ * Caso o tipo seja "Aluno", atribui automaticamente um RA e inicializa o estado
+ * como ativo. O email é verificado para evitar duplicatas.
+ *
+ * @note O novo usuário é salvo imediatamente no arquivo "usuarios.txt".
+ * @warning O cadastro falha se o limite de usuários ou alunos for atingido.
+ *
+ * @details Tipos de usuários:
+ * - 0: Administrador
+ * - 1: Professor
+ * - 2: Aluno
+ */
 
 void cadastrarUsuario() {
     if (num_usuarios >= MAX_USUARIOS) {
@@ -266,6 +304,18 @@ void cadastrarUsuario() {
     printf("Usuario cadastrado com sucesso!\n");
 }
 
+/**
+ * @brief Inativa um aluno com base no RA.
+ *
+ * Esta função localiza um aluno pelo RA, verifica seu estado e, se ativo, o define como inativo.
+ * O estado do aluno é persistido no arquivo de dados.
+ *
+ * @param ra O RA do aluno a ser inativado.
+ *
+ * @note Somente alunos podem ser inativados.
+ * @warning Se o aluno já estiver inativo, nenhuma ação será tomada.
+ */
+
 void inativarAluno(int ra) {
     for (int i = 0; i < num_usuarios; i++) {
         if (usuarios[i].ra == ra && usuarios[i].tipo == ALUNO) {
@@ -282,6 +332,18 @@ void inativarAluno(int ra) {
     printf("Aluno não encontrado.\n");
 }
 
+/**
+ * @brief Ativa um aluno com base no RA.
+ *
+ * Esta função localiza um aluno pelo RA, verifica seu estado e, se inativo, o define como ativo.
+ * O estado do aluno é persistido no arquivo de dados.
+ *
+ * @param ra O RA do aluno a ser ativado.
+ *
+ * @note Somente alunos podem ser ativados.
+ * @warning Se o aluno já estiver ativo, nenhuma ação será tomada.
+ */
+
 void ativarAluno(int ra) {
     for (int i = 0; i < num_usuarios; i++) {
         if (usuarios[i].ra == ra && usuarios[i].tipo == ALUNO) {
@@ -297,6 +359,17 @@ void ativarAluno(int ra) {
     }
     printf("Aluno não encontrado.\n");
 }
+
+/**
+ * @brief Autentica um usuário com base em email e senha.
+ *
+ * Solicita o email e senha do usuário e verifica se as credenciais correspondem a algum
+ * usuário cadastrado. Retorna um ponteiro para o usuário autenticado em caso de sucesso.
+ *
+ * @return Ponteiro para o usuário autenticado ou NULL se a autenticação falhar.
+ *
+ * @warning A autenticação falha se o email ou senha estiverem incorretos.
+ */
 
 Usuario* autenticarUsuario() {
     char email[MAX_EMAIL];
@@ -316,6 +389,18 @@ Usuario* autenticarUsuario() {
     return NULL;
 }
 
+
+/**
+ * @brief Lista todos os alunos ativos no sistema.
+ *
+ * Apenas administradores e professores têm permissão para acessar esta função.
+ * Exibe informações como RA, nome e email dos alunos.
+ *
+ * @param usuario O ponteiro para o usuário que está executando a função.
+ *
+ * @note Alunos inativos não serão exibidos.
+ * @warning O acesso é negado para usuários que não sejam administradores ou professores.
+ */
 void listarAlunos(Usuario* usuario) {
     if (usuario->tipo != ADMINISTRADOR && usuario->tipo != PROFESSOR) {
         printf("Acesso negado. Apenas administradores e professores podem listar alunos.\n");
@@ -329,6 +414,18 @@ void listarAlunos(Usuario* usuario) {
         }
     }
 }
+
+/**
+ * @brief Cadastra uma nova nota para um aluno.
+ *
+ * Localiza um aluno pelo RA e adiciona uma nova nota, desde que o limite de notas não tenha
+ * sido atingido e a nota esteja no intervalo de 0 a 10. Atualiza a média do aluno automaticamente.
+ *
+ * @param usuario O ponteiro para o professor que está executando a função.
+ *
+ * @note Apenas professores podem cadastrar notas.
+ * @warning A função falha se o RA não for encontrado ou se o número máximo de notas for atingido.
+ */
 
 void cadastrarNotas(Usuario* usuario) {
     if (usuario->tipo != PROFESSOR) {
@@ -375,6 +472,17 @@ void cadastrarNotas(Usuario* usuario) {
     printf("Aluno nao encontrado\n");
 }
 
+/**
+ * @brief Exibe as notas e a média de um aluno.
+ *
+ * Permite que alunos visualizem suas notas cadastradas e sua média geral.
+ *
+ * @param usuario O ponteiro para o aluno que está executando a função.
+ *
+ * @note Apenas alunos podem acessar esta função.
+ * @warning A função falha se não houver notas cadastradas.
+ */
+
 void exibirNotas(Usuario* usuario) {
         if (usuario->tipo != ALUNO) {
             printf("Acesso negado. Apenas alunos podem exibir suas notas\n");
@@ -391,6 +499,27 @@ void exibirNotas(Usuario* usuario) {
             printf("Nenhuma nota cadastrada\n");
         }
 }
+
+/**
+ * @brief Edita as informações de um usuário (aluno ou professor).
+ *
+ * Permite que administradores editem informações de usuários no sistema com base no RA (para alunos)
+ * ou e-mail (para professores). É possível atualizar nome, e-mail e senha, mantendo os valores antigos 
+ * caso o usuário não forneça novos valores. Também verifica se um e-mail já está em uso antes de atualizá-lo.
+ *
+ * @param usuario Ponteiro para o administrador que está executando a edição.
+ *
+ * @note Apenas administradores têm permissão para executar esta função.
+ * @warning A edição não será realizada se o RA ou e-mail fornecido não existir no sistema.
+ * @warning Se o e-mail fornecido já estiver cadastrado para outro usuário, ele não será alterado.
+ *
+ * @details 
+ * - Para editar um aluno, forneça seu RA.
+ * - Para editar um professor, forneça seu e-mail.
+ * - Para manter o valor antigo de qualquer campo, pressione "Enter" sem digitar um novo valor.
+ *
+ * @return Nada.
+ */
 
 void editarUsuario(Usuario* usuario) {
     if (usuario->tipo != ADMINISTRADOR) {
